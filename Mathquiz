@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Math Quiz</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap');
+        
+        body {
+            font-family: 'Ubuntu', sans-serif;
+            
+            
+        }
+        .display-text{
+            position: relative;
+            top: 13em;
+            
+        }
+    </style>
+</head>
+<body>
+
+<h3 class = "display-text">
+<center>
+<mark>Feel free to post your score in the comments section</mark>
+</center>
+</h3>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.all.min.js"></script>
+    <script>
+       
+        let score = 0;
+        let questionIndex = 0;
+
+        
+       const questions = [
+    "What is the result of (5 * 3) - 4?",
+    "Simplify: (12 / 4) + (6 * 2)",
+    "Given the equation 2x + 3 = 11, what is the value of x?",
+    " 3x + 2y = 8.  2x - y = 5 and x + y = ?",
+    "2k² - 5k + 6 = 3k - 2 and k = ?",
+    "sin²θ + cos²θ = α and what is  α + 99 = ? ",
+    "What is the square root of 625?",
+    "Differentiate the equation f(x) = 3x^2 - 2x + 1 with respect to x, and evaluate it at x = 0. Enter the result."
+];
+
+        
+        
+        function startQuiz() {
+            Swal.fire({
+                title: 'Welcome to the Math Quiz!',
+                text: 'Please enter your name:',
+                input: 'text',
+                allowOutsideClick: false,
+                inputValidator: (value) => {
+                    if (!value) {
+                        return 'Name is required.';
+                    }
+                    
+                    if (!/^[a-zA-Z\s]*$/.test(value)) {
+                        return "Hey, bro/sis,Why dont you enter a valid name?";
+                    }
+                },
+                showCancelButton: false,
+                confirmButtonText: 'Start Quiz'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire({
+                        title: `Hello, ${result.value}!`,
+                        text: 'Let\'s begin the quiz. You have 15 seconds for each question.',
+                        icon: 'success'
+                    }).then(() => {
+                        askQuestion();
+                    });
+                }
+            });
+        }
+
+        
+        function askQuestion() {
+            if (questionIndex < questions.length) {
+                const question = questions[questionIndex];
+                const correctAnswer = answers[questionIndex];
+
+                Swal.fire({
+                    title: `Question ${questionIndex + 1}`,
+                    text: question,
+                    input: 'text',
+                    inputValidator: (value) => {
+                        
+                        if (!value) {
+                            return 'Answer is required.';
+                        }
+                    },
+                    showCancelButton: false,
+                    showConfirmButton: true,
+                    confirmButtonText: 'Submit',
+                    timer: 15000,
+                    timerProgressBar: true,
+                    allowOutsideClick: false
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        if (result.value === correctAnswer) {
+                            score += 10;
+                        }
+                    }
+                    questionIndex++;
+                    askQuestion();
+                });
+            } else {
+                
+                if (score >= 50) {
+                    let stars = '⭐⭐⭐';
+                    if (score >= 50 && score <= 69) {
+                        stars = '⭐⭐⭐⭐';
+                    } else if (score > 70) {
+                        stars = '⭐⭐⭐⭐⭐';
+                    }
+
+                    Swal.fire({
+                        title: `Quiz Completed!`,
+                        html: `Your Score: ${score}/80<br>Stars: ${stars}`,
+                        icon: 'info',
+                        confirmButtonText: 'Okay',
+                        allowOutsideClick: false
+                    });
+                } else if (score >= 0 && score <= 40) {
+                    Swal.fire({
+  title: '',
+  imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTT-e28XI1l-I97F0bNkfXpSQn3ij9Ghr9xag&usqp=CAU',
+  imageWidth: 500,
+  imageHeight: 250,
+  imageAlt: 'Bhai kya kar Raha hai tu...',
+  html: "<div class='alert alert-danger' role='alert'>Oops! Something went wrong.</div>",
+html: "<div class='alert alert-light' role='alert'> Bilkul hi time barbaad kiya  Apne<br><small><b>Apna Bhi  Hamara Bhi </b> </small></div>"
+});
+                }
+            }
+        }
+
+
+
+   const answers = [
+    "11",           
+    "15",          
+    "4",   
+    "3",
+    "2",        
+    "100",
+    "25",
+    "1"             
+];
+        
+        
+        window.onload = startQuiz;
+    </script>
+</body>
+</html>
