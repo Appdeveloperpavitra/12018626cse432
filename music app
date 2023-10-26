@@ -1,0 +1,180 @@
+<html>
+ <head>
+  <title>🎵 Moving skeleton ☠️</title>
+  <meta
+   name="viewport" 
+   content=
+    "width=device-width, 
+    initial-scale=1.0"/>     
+  <script> 
+   idImagenVisible="img1"; 
+   function mostrar(id) { 
+    document.getElementById(idImagenVisible)
+    .style.display="none"; 
+    document.getElementById(id)
+    .style.display="block"; 
+    idImagenVisible=id; 
+   } 
+  </script>         
+        <link rel="stylesheet" href="projectc.css">
+ </head> 
+  
+ <body>
+ 
+  <button
+   id="btnModal">
+    ☠️ VOLVER 🔙
+  </button> 
+  
+  <div
+   id="myModal" 
+   class="modalContainer">
+   
+   <div class="modal-content">
+    <span
+     class="close">
+      ❌️
+    </span> 
+    <h1 class="ale">Alert</h1>
+    <h2>
+     Click on to play the audio.<br> 
+Use the volume slider to control the volume.
+<br>😁 Let's move the skeleton
+    </h2> 
+       <img
+    class="🎪" 
+    src=     "https://media3.giphy.com/media/uFbLxSwbwh4JwVnaev/giphy.gif?cid=6c09b9523cu01enk58ap4ffxye6ye6u6iqpirq3nrpqpx7xl&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=s">
+   </div>
+   
+  </div>   
+  
+  
+  
+  <div class="chocolate">
+
+   <div class="taza">
+    
+   <img
+    class="hide"
+    id="img1"
+    src=     "https://media4.giphy.com/media/skOdE7pUHCIHQ6KTCR/giphy.gif?cid=6c09b952f77nz96o7sa4fy8ciurn5hap1wb70044puk4fgfy&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=s">
+
+    
+   <img
+    class="📢" 
+    src=     "https://dl.dropbox.com/s/py8ibi6c7y9g0sa/altavoz.gif?dl=1"> 
+ 
+  <div class="turntable💃">
+   <h1 class="palo">
+    Music_JB
+   </h1>
+   <p class="v">
+    V<br>
+    O<br>
+    L<br>
+    U<br>
+    M<br>
+    E
+   </p>
+   <input type="checkbox" id="📻"   
+          onclick="mostrar('img1')">
+    <label class="📻"
+           for="📻">
+      <img class="💃" 
+       id="bk" 
+       src=
+"https://dl.dropbox.com/s/biw184993l86p4o/aon.png?dl=1" />
+    </label>
+    <audio loop id="▶️">
+     <source
+      src= "https://dl.dropbox.com/s/1006uhmz7ods005/renard%20-%20pizzzzzzzz.mp3?dl=1" 
+      type="audio/mpeg"/>
+    </audio>
+    <input
+      type="range" 
+      max="1" 
+      min="0" 
+      step="0.1" 
+      id="🎚"
+      onchange="audioVolume(this.value)">
+      
+      <div class="🚬">
+      
+       <img class="💃" 
+        id="Dance" 
+        src=
+"https://dl.dropbox.com/s/e3dm2bv6pac5tqz/bdisco.gif?dl=1" />
+
+       <img class="mano" 
+        id="ahi" 
+        src=
+"https://media3.giphy.com/media/AFLzsB0XV8JgoyLtW7/giphy.gif?cid=82a1493b3dd4f8ecmp4hl2gzsyiciqfvikiiv8snmzufr9fr&rid=giphy.gif&ct=s" />
+
+      </div>
+     <div class="💽"></div>
+    <div class="💿"></div>
+   <div class="⚙️"></div>
+  </div> 
+              
+ </body> 
+ 
+ 
+ <script>
+    
+  if(document.getElementById("btnModal")){
+   var modal = document.getElementById("myModal");
+   var btn = document.getElementById("btnModal");
+   var span = document.getElementsByClassName("close")[0];
+   var body = document.getElementsByTagName("body")[0];
+
+   btn.onclick = function() {
+    modal.style.display = "block";
+
+    body.style.position = "static";
+    body.style.height = "100%";
+    body.style.overflow = "hidden";
+   }
+
+   span.onclick = function() {
+    modal.style.display = "none";
+    body.style.position = "inherit";
+    body.style.height = "auto";
+    body.style.overflow = "visible";
+   }
+
+   window.onclick = function(event) {
+    if (event.target == modal) {
+     modal.style.display = "none";
+     body.style.position = "inherit";
+     body.style.height = "auto";
+     body.style.overflow = "visible";
+    }
+   }
+  }
+ 
+ </script>
+
+ <script>
+  let on =
+   document.getElementById("📻");
+  let music =
+   document.getElementById("▶️");
+  on.addEventListener("click", function(){
+  if(music.paused){
+    music.play();
+    music.currentTime = 0;
+    on.innerHTML = "Pause";
+  } else {
+    music.pause();
+    on.innerHTML = "Play";
+  }
+  });
+
+  function audioVolume(amount) {
+   let change =  
+   document.getElementsByTagName("audio")[0];
+   change.volume = amount;
+  }
+ </script>
+
+</html>
